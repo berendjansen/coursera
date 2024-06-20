@@ -7,31 +7,46 @@
 import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdRandom;
 
-import java.util.Iterator;
-
 public class Permutation {
     public static void main(String[] args) {
-        if (args.length != 0) {
-            int k = Integer.parseInt(args[0]);
-            if (k > 0) {
-                RandomizedQueue<String> rq = new RandomizedQueue<String>();
-                for (int i = 0; i < k; i++) {
-                    rq.enqueue(StdIn.readString());
-                }
-                double counter = k + 1;
-                while (!StdIn.isEmpty()) {
-                    String in = StdIn.readString();
-                    if (StdRandom.bernoulli(k / counter)) {
-                        rq.dequeue();
-                        rq.enqueue(in);
-                    }
-                    counter++;
-                }
-                Iterator<String> rqIt = rq.iterator();
-                while (rqIt.hasNext()) {
-                    System.out.println(rqIt.next());
-                }
+        int k = getK(args);
+        if (k > 0) {
+            RandomizedQueue<String> RandomizedQueue = getAndFillQueue(k);
+            performIterations(k, RandomizedQueue);
+            printQueue(RandomizedQueue);
+        }
+    }
+
+    private static int getK(String[] args) {
+        if (args.length == 1) {
+            return Integer.parseInt(args[0]);
+        }
+        throw new IllegalArgumentException("Only a single integer input argument is allowed");
+    }
+
+    private static RandomizedQueue<String> getAndFillQueue(int k) {
+        RandomizedQueue<String> rq = new RandomizedQueue<String>();
+        for (int i = 0; i < k && !StdIn.isEmpty(); i++) {
+            rq.enqueue(StdIn.readString());
+        }
+        return rq;
+    }
+
+    private static void performIterations(int k, RandomizedQueue<String> rq) {
+        double counter = k + 1;
+        while (!StdIn.isEmpty()) {
+            String in = StdIn.readString();
+            if (StdRandom.bernoulli(k / counter)) {
+                rq.dequeue();
+                rq.enqueue(in);
             }
+            counter++;
+        }
+    }
+
+    private static void printQueue(RandomizedQueue<String> rq) {
+        for (String s : rq) {
+            System.out.println(s);
         }
     }
 }

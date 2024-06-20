@@ -132,6 +132,8 @@ public class Deque<Item> implements Iterable<Item> {
         Deque<Integer> dq = new Deque<Integer>();
         // dq.printStatus();
         dq.addFirst(2);
+        System.out.println(dq.size());
+        System.out.println(dq.isEmpty());
         dq.addFirst(3);
         dq.addFirst(4);
         dq.removeFirst();
