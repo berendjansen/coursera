@@ -9,19 +9,15 @@ import edu.princeton.cs.algs4.StdRandom;
 
 public class Permutation {
     public static void main(String[] args) {
-        int k = getK(args);
+        if (args.length != 1) {
+            throw new IllegalArgumentException("Only a single integer input argument is allowed");
+        }
+        int k = Integer.parseInt(args[0]);
         if (k > 0) {
-            RandomizedQueue<String> RandomizedQueue = getAndFillQueue(k);
-            performIterations(k, RandomizedQueue);
-            printQueue(RandomizedQueue);
+            RandomizedQueue<String> randomizedQueue = getAndFillQueue(k);
+            performIterations(k, randomizedQueue);
+            printQueue(randomizedQueue);
         }
-    }
-
-    private static int getK(String[] args) {
-        if (args.length == 1) {
-            return Integer.parseInt(args[0]);
-        }
-        throw new IllegalArgumentException("Only a single integer input argument is allowed");
     }
 
     private static RandomizedQueue<String> getAndFillQueue(int k) {
