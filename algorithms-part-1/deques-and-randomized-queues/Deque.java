@@ -38,7 +38,6 @@ public class Deque<Item> implements Iterable<Item> {
         if (oldFirst != null) {
             oldFirst.previous = first;
         }
-        first.previous = null;
         if (isEmpty()) {
             last = first;
         }
@@ -53,7 +52,6 @@ public class Deque<Item> implements Iterable<Item> {
         Node oldLast = last;
         last = new Node();
         last.item = item;
-        last.next = null;
         last.previous = oldLast;
         if (oldLast != null) {
             oldLast.next = last;
@@ -123,7 +121,7 @@ public class Deque<Item> implements Iterable<Item> {
             throw new UnsupportedOperationException("Remove not supported.");
         }
     }
-    
+
     public static void main(String[] args) {
         Deque<Integer> dq = new Deque<>();
         // dq.printStatus();
