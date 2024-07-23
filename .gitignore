@@ -1,0 +1,7 @@
+*.zip
+*.class
+/algorithms-part-1/.idea/*.xml
+*.jar
+*.iml
+*.DS_STORE
+/algorithms-part-1/.idea/
